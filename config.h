@@ -3,7 +3,7 @@
 
 #pragma once
 
-#define MASTER_LEFT
+#define MASTER_RIGHT
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 // OLED Settings
