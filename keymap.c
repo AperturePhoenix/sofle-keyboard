@@ -26,18 +26,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-bool is_swapped = false;
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case CG_TOGG:
-            if (!record->event.pressed) {
-                is_swapped = !is_swapped;
-            }
-        default:
-            return true; // Process all other keycodes normally
-    }
-}
-
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
@@ -45,11 +33,7 @@ bool oled_task_user(void) {
     oled_write_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
         case 0:
-            if (is_swapped) {
-                oled_write_ln_P(PSTR("MAC"), false);
-            } else {
-                oled_write_ln_P(PSTR("MAIN"), false);
-            }
+            oled_write_ln_P(PSTR("MAIN"), false);
             break;
         case 1:
             oled_write_ln_P(PSTR("FUNC"), false);
